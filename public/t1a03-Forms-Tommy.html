@@ -1,0 +1,57 @@
+<h1 align=center>t1a03-forms-Tommy.html</h1>
+<fomt color=blue> prove you can use: forms</font>
+the following are all form elements (add to them):<br>
+<form>
+  
+Tommy:<input type=text id="myText01" value="Tommy"><br>
+ checkbox: <br>
+ beef:<input type=checkbox><br>
+ radio buttons: <br>
+  107.7 <input type=radio name="myRad01" value=""><br>
+  83.5 <input type=radio name="myRad01"value=""><br>
+ 
+hidden:<input type=hidden><br>
+file:<input type=file><br>
+reset:<input type=reset><br>
+submit (advance)<input type=submit><br>
+
+button: <input type=button value="click" onclick="{
+  document.getElementById('myArea01').value = 'Cool'
+}"><br>
+Textarea:<br>
+  <textarea id="myArea01" cols=60 rows=5 > wow </textarea><br>
+  
+Select Box:<BR>
+<select id="mySelect01" size=2>
+<option value='myOne'>One
+<option value='myTwo'>Two
+<option value='myThree'>Three
+</select>
+</form>
+<p>Choose your favorite Web language:</p>
+<body>
+<form>
+  <input type="radio" id="html" name="fav_language" value="HTML">
+  <label for="html">HTML</label><br>
+  <input type="radio" id="css" name="fav_language" value="CSS">
+  <label for="css">CSS</label><br>
+  <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+  <label for="javascript">JavaScript</label>
+</form> 
+
+
+
+<h2>what do you have</h2>
+
+<form action="/action_page.php">
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
