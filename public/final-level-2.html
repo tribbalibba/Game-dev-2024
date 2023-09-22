@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  #game-board {
+    width: 400px;
+    height: 400px;
+    background-color: black;
+    position: relative;
+  }
+  
+  #pac-man {
+    width: 40px;
+    height: 40px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    transition: transform 0.2s;
+  }
+  
+  #ghost {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+  }
+</style>
+</head>
+<body>
+  <div id="game-board">
+    <div id="pac-man"></div>
+    <div id="ghost"></div>
+  </div>
+
+  <script>
+    const pacMan = document.getElementById("pac-man");
+    const ghost = document.getElementById("ghost");
+    const gameBoard = document.getElementById("game-board");
+
+    let pacManX = 180;
+    let pacManY = 180;
+    let ghostX = 20;
+    let ghostY = 20;
+
+    // Update Pac-Man's position
+    function movePacMan(dx, dy) {
+      pacManX += dx;
+      pacManY += dy;
+      pacMan.style.transform = `translate(${pacManX}px, ${pacManY}px)`;
+
+      // Check if Pac-Man reaches the bottom right corner
+      if (pacManX >= 360 && pacManY >= 360) {
+        winGame();
+      }
+    }
+
+    // Update Ghost's position randomly
+    function moveGhostRandomly() {
+      const randomX = Math.floor(Math.random() * 360);
+      const randomY = Math.floor(Math.random() * 360);
+      ghostX = randomX;
+      ghostY = randomY;
+      ghost.style.transform = `translate(${ghostX}px, ${ghostY}px)`;
+    }
+
+    // Check for collisions with Ghost
+    function checkCollisions() {
+      const distance = Math.sqrt(
+        Math.pow(pacManX - ghostX, 2) + Math.pow(pacManY - ghostY, 2)
+      );
+
+      if (distance < 30) {
+        alert("Game Over! You got caught by the ghost.");
+        resetGame();
+      }
+    }
+
+    // Display win pop-up and link to the next level
+    function winGame() {
+      alert("You Win!");
+      const nextLevelLink = document.createElement("a");
+      nextLevelLink.href = "next_level.html"; // Replace with the actual URL of the next level
+      nextLevelLink.textContent = "Next Level";
+      document.body.appendChild(nextLevelLink);
+    }
+
+    // Reset the game
+    function resetGame() {
+      pacManX = 180;
+      pacManY = 180;
+      movePacMan(0, 0);
+      moveGhostRandomly();
+    }
+
+    // Event listeners for WASD keys
+    document.addEventListener("keydown", (event) => {
+      const key = event.key.toLowerCase();
+
+      switch (key) {
+        case "w":
+          movePacMan(0, -40);
+          break;
+        case "a":
+          movePacMan(-40, 0);
+          break;
+        case "s":
+          movePacMan(0, 40);
+          break;
+        case "d":
+          movePacMan(40, 0);
+          break;
+      }
+
+      checkCollisions();
+    });
+
+    // Initialize the game
+    moveGhostRandomly(); // Initial random position for the ghost
+
+    // Set a timer to move the ghost randomly every 2 seconds
+    setInterval(moveGhostRandomly, 2000);
+  </script>
+</body>
+</html>
