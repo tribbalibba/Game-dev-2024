@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h3 align="center">t1z02-object-zombie-Tommy.html</h3>
+  <p>Is <input id="myText01" type="text" value="jon"> a zombie?</p>
+  <button onclick="checkZombie()">Check it</button>
+  <div id="myDiv01">...</div>
+  
+  <script>
+    function checkZombie() {
+      const inputElement = document.getElementById("myText01");
+      const inputValue = inputElement.value.toLowerCase();
+      
+      const isZombie = Math.random() < 0.5;
+      if (isZombie) {
+        alert(`${inputValue} is a zombie!`);
+      } else {
+        alert(`${inputValue} is not a zombie.`);
+      }
+    }
+  </script>
+</body>
+</html>
