@@ -1,25 +1,82 @@
-<!DOCTYPE html>
 <html>
 <head>
+  <title>Zombie</title>
+  <style>
+    body {
+      background-color: #5617e8;  color: white;
+      font-family: Arial, sans-serif; padding: 20px;
+      text-align: center;
+    }
+    h3 {
+      margin-top: 20px;
+      font-size: 36px;
+    }
+
+    select {
+   padding: 10px;
+      font-size: 18px;  border: 2px solid #d45f2b;
+    border-radius: 8px;
+      margin-top: 20px;
+    }
+
+   p {
+      font-size: 24px;
+    }
+
+    button {
+   font-size: 20px;     padding: 10px 20px;  margin-top: 20px;
+      background-color: #d45f2b;
+      color: #5617e8;    border: none;
+      border-radius: 8px;   cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45aaf2;
+    }
+
+    #result {
+      font-size: 24px;      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h3 align="center">t1z02-object-zombie-Tommy.html</h3>
-  <p>Is <input id="myText01" type="text" value="jon"> a zombie?</p>
-  <button onclick="checkZombie()">Check it</button>
-  <div id="myDiv01">...</div>
-  
-  <script>
-    function checkZombie() {
-      const inputElement = document.getElementById("myText01");
-      const inputValue = inputElement.value.toLowerCase();
-      
-      const isZombie = Math.random() < 0.5;
-      if (isZombie) {
-        alert(`${inputValue} is a zombie!`);
-      } else {
-        alert(`${inputValue} is not a zombie.`);
-      }
+
+<h3>Zombie Check</h3>
+
+<select id="mySelect01" size="1" onchange="checkZombieStatus()">
+  <option></option>
+  <option value="Danny">Danny</option>
+  <option value="William">William</option>
+</select>
+
+<p id="result"></p>
+
+<button onclick="displayDateTime()">Click me to display Date and Time</button>
+
+<script>
+  const zombies = {
+    'Danny': true,
+    'William': false
+  };
+
+  function checkZombieStatus() {
+    const selectedName = document.getElementById('mySelect01').value;
+    const resultDiv = document.getElementById('result');
+
+    if (zombies[selectedName]) {
+      resultDiv.innerHTML = selectedName + ' is a zombie';
+    } else {
+      resultDiv.innerHTML = selectedName + ' is NOT a zombie';
     }
-  </script>
+  }
+
+  function displayDateTime() {
+    const date = new Date();
+    document.getElementById('demo').innerHTML = 'Date and Time: ' + date;
+  }
+</script>
+
+<p id="demo"></p>
+
 </body>
 </html>
