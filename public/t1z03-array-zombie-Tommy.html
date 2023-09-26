@@ -1,6 +1,22 @@
 <script>
   let myThingName = ['jon', 'Dan','Tommy']
+    let myThingZombie = [true, false, true]
 </script>
 is <select id=",ySelect01" sixe=1 onChange="{
 myinput = document.getElementById('myselect01').value
-for (myloop=0: myloop < 4; myloop++)
+for (myloop=0: myloop < 4; myloop++){
+     if (myThingName [myloop] == myinput){
+     if (myThingZombie [myloop]) {
+     document.getElementById('Div01').innerhtml = myInput + ' is a zombie'
+     } else { 
+     document.gtetElementById('myDiv01').innerhtml = myinput + ' is NOT a zombie'
+     }
+     }
+     }
+     }">
+  <option>
+  <option>Jon
+      <option>Dan
+          <option>Fred
+</select> a Zombie? Really!<br>
+<div id="MyDiv01">...</div><br>
