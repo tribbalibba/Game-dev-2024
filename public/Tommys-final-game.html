@@ -2,7 +2,7 @@
 <html>
 <head>
 <style>
-  /* Define the ground */
+  
   .ground {
     width: 100%;
     height: 20px;
@@ -11,7 +11,7 @@
     bottom: 0;
   }
 
-  /* Define Donkey Kong */
+  
   .donkey-kong {
     width: 50px;
     height: 70px;
@@ -21,28 +21,28 @@
     left: 50px;
   }
 
-  /* Define Mario */
+ 
   .mario {
     width: 20px;
     height: 30px;
     background-color: red;
     position: absolute;
     bottom: 20px;
-    left:700px; /* Start Mario from the right */
+    left:700px; 
   }
 
-  /* Define blocks */
+
   .block {
     width: 30px;
     height: 20px;
     background-color: gray;
     position: absolute;
     bottom: 20px;
-    left: -30px; /* Start blocks from the left side */
+    left: -30px; 
     animation: moveBlock 5s linear infinite;
   }
 
-  /* Define floors */
+ 
   .floor {
     width: 100%;
     height: 20px;
@@ -50,7 +50,7 @@
     position: absolute;
   }
 
-  /* Create different floors */
+  
   .floor-1 {
     top: 100px;
   }
@@ -63,7 +63,7 @@
     top: 300px;
   }
 
-  /* Winning message */
+ 
   .win-message, .lose-message {
     font-size: 24px;
     font-weight: bold;
@@ -75,14 +75,14 @@
     display: none;
   }
   
-  /* Winning message link style */
+ 
   .win-message a {
     color: blue;
     text-decoration: underline;
     cursor: pointer;
   }
 
-  /* Keyframes for block movement */
+
   @keyframes moveBlock {
     from {
       left: -30px;
@@ -95,50 +95,50 @@
 </head>
 <body>
 
-<!-- Create the ground -->
+
 <div class="ground"></div>
 
-<!-- Create Donkey Kong -->
+
 <div class="donkey-kong"></div>
 
-<!-- Create Mario -->
+
 <div class="mario"></div>
 
-<!-- Create blocks -->
+
 <div class="block" id="block1"></div>
 <div class="block" id="block2" style="left: 200px;"></div>
 <div class="block" id="block3" style="left: 400px;"></div>
 
-<!-- Create floors -->
+
 <div class="floor floor-1"></div>
 <div class="floor floor-2"></div>
 <div class="floor floor-3"></div>
 
-<!-- Winning and losing messages -->
+
 <div class="win-message" id="win-message">
   You Win! <a href="https://tribbalibba.github.io/Game-dev-2024/public/final-level-2.html">Next Level</a>
 </div>
 <div class="lose-message" id="lose-message">You Lose. Press R to Restart.</div>
 
 <script>
-  // Get references to the Mario, Donkey Kong, and winning/losing message elements
+  
   const mario = document.querySelector(".mario");
   const donkeyKong = document.querySelector(".donkey-kong");
   const winMessage = document.querySelector("#win-message");
   const loseMessage = document.querySelector("#lose-message");
 
-  // Get references to the block elements
+ 
   const blocks = document.querySelectorAll(".block");
 
-  // Set initial positions and jump variables
-  let marioX = 450; // Start Mario from the right
-  let marioY = 20; // Initial Y position
+  
+  let marioX = 450; 
+  let marioY = 20; 
   let isJumping = false;
 
-  // Define a function to move Mario
+  
   function moveMario(direction) {
     if (winMessage.style.display === "block" || loseMessage.style.display === "block") {
-      return; // Don't allow movement after winning or losing
+      return; 
     }
 
     if (direction === "a") {
@@ -146,32 +146,32 @@
     } else if (direction === "d") {
       marioX += 10;
     } else if (direction === "w" && !isJumping) {
-      // Only allow jumping if not currently jumping
+     
       isJumping = true;
       jumpMario();
     }
 
     mario.style.left = marioX + "px";
 
-    // Check for collision with blocks
+    
     for (const block of blocks) {
       if (isColliding(mario, block)) {
-        // Mario has collided with a block, so he loses
+        
         loseMessage.style.display = "block";
       }
     }
 
-    // Check for collision with Donkey Kong
+    
     if (isColliding(mario, donkeyKong)) {
-      // Mario has touched Donkey Kong, so he wins
+      
       winMessage.style.display = "block";
     }
   }
 
-  // Define a function to handle Mario's jump
+
   function jumpMario() {
-    let jumpHeight = 100; // Set the jump height
-    let jumpDuration = 1000; // Set the jump duration (in milliseconds)
+    let jumpHeight = 100;
+    let jumpDuration = 1000; 
 
     let startTime = null;
     function animateJump(timestamp) {
@@ -186,8 +186,8 @@
         mario.style.bottom = marioY + jumpY + "px";
         requestAnimationFrame(animateJump);
       } else {
-        // Jump completed
-        marioY = 20; // Reset Mario's Y position
+        
+        marioY = 20; 
         mario.style.bottom = marioY + "px";
         isJumping = false;
       }
@@ -196,7 +196,7 @@
     requestAnimationFrame(animateJump);
   }
 
-  // Easing function for smooth jump
+  
   function easeInOutQuad(t, b, c, d) {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
@@ -204,7 +204,7 @@
     return (-c / 2) * (t * (t - 2) - 1) + b;
   }
 
-  // Check for collision between two elements
+  
   function isColliding(element1, element2) {
     const rect1 = element1.getBoundingClientRect();
     const rect2 = element2.getBoundingClientRect();
@@ -216,18 +216,18 @@
     );
   }
 
-  // Listen for keydown events to control Mario and restart the game
+ 
   document.addEventListener("keydown", function (event) {
     const key = event.key;
     if (key === "a" || key === "d" || key === "w") {
       moveMario(key);
     } else if (key === "r") {
-      // Restart the game when "R" key is pressed
+     
       restartGame();
     }
   });
 
-  // Function to restart the game
+  
   function restartGame() {
     winMessage.style.display = "none";
     loseMessage.style.display = "none";
