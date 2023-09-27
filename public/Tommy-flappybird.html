@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flappy Bird</title>
+  <style>
+    #game-container {
+      width: 400px;
+      height: 400px;
+      border: 2px solid black;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #bird {
+      width: 50px;
+      height: 50px;
+      background-color: yellow;
+      position: absolute;
+    }
+
+    .pipe {
+      width: 50px;
+      position: absolute;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="bird"></div>
+  </div>
+  <script>
+    const gameContainer = document.getElementById('game-container');
+    const bird = document.getElementById('bird');
+    const pipes = [];
+
+    let gravity = 1;
+    let birdPosition = 100;
+    let gameInterval;
+    let isGameOver = false;
+    let gameStarted = false;
+
+    function jump() {
+      if (!isGameOver && birdPosition > 0) {
+        gravity = -10;
+      }
+    }
+
+    function createPipe() {
+      const pipeHeight = Math.floor(Math.random() * 100) + 100;
+      const gapHeight = 150; 
+      const pipe = document.createElement('div');
+      pipe.classList.add('pipe');
+      pipe.style.height = pipeHeight + 'px';
+      pipe.style.left = gameContainer.clientWidth + 'px';
+      gameContainer.appendChild(pipe);
+      pipes.push(pipe);
+
+      const pipe2 = document.createElement('div');
+      pipe2.classList.add('pipe');
+      pipe2.style.height = (gameContainer.clientHeight - pipeHeight - gapHeight) + 'px';
+      pipe2.style.left = gameContainer.clientWidth + 'px';
+      pipe2.style.top = (pipeHeight + gapHeight) + 'px';
+      gameContainer.appendChild(pipe2);
+      pipes.push(pipe2);
+    }
+
+    function movePipes() {
+      if (!isGameOver) {
+        for (let i = 0; i < pipes.length; i++) {
+          const pipe = pipes[i];
+          const pipeLeft = parseInt(pipe.style.left);
+          if (pipeLeft < -50) {
+            pipes.splice(i, 1);
+            gameContainer.removeChild(pipe);
+            i--;
+          } else {
+            pipe.style.left = (pipeLeft - 2) + 'px';
+
+            const birdRect = bird.getBoundingClientRect();
+            const pipeRect = pipe.getBoundingClientRect();
+
+            if (
+              birdRect.right > pipeRect.left &&
+              birdRect.left < pipeRect.right &&
+              birdRect.bottom > pipeRect.top &&
+              birdRect.top < pipeRect.bottom
+            ) {
+             
+              gameOver();
+            }
+          }
+        }
+      }
+    }
+
+    function gameLoop() {
+      gravity += 1;
+      birdPosition += gravity;
+      bird.style.top = birdPosition + 'px';
+
+      if (birdPosition < 0 || birdPosition + bird.clientHeight > gameContainer.clientHeight) {
+        gameOver();
+      }
+
+      movePipes();
+    }
+
+    function startGame() {
+      if (!gameStarted) {
+        gameStarted = true;
+        gameInterval = setInterval(gameLoop, 30);
+        setInterval(createPipe, 2000);
+      }
+    }
+
+    function gameOver() {
+      clearInterval(gameInterval);
+      isGameOver = true;
+      alert('Game Over');
+      location.reload();
+    }
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === ' ' || event.key === 'Spacebar') {
+        jump();
+      } else if (event.key === 'Enter') {
+        startGame();
+      }
+    });
+  </script>
+</body>
+</html>
