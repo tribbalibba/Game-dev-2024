@@ -48,19 +48,19 @@
     let ghostX = 20;
     let ghostY = 20;
 
-    // Update Pac-Man's position
+   
     function movePacMan(dx, dy) {
       pacManX += dx;
       pacManY += dy;
       pacMan.style.transform = `translate(${pacManX}px, ${pacManY}px)`;
 
-      // Check if Pac-Man reaches the bottom right corner
+     
       if (pacManX >= 360 && pacManY >= 360) {
         winGame();
       }
     }
 
-    // Update Ghost's position randomly
+   
     function moveGhostRandomly() {
       const randomX = Math.floor(Math.random() * 360);
       const randomY = Math.floor(Math.random() * 360);
@@ -69,7 +69,7 @@
       ghost.style.transform = `translate(${ghostX}px, ${ghostY}px)`;
     }
 
-    // Check for collisions with Ghost
+   
     function checkCollisions() {
       const distance = Math.sqrt(
         Math.pow(pacManX - ghostX, 2) + Math.pow(pacManY - ghostY, 2)
@@ -81,16 +81,16 @@
       }
     }
 
-    // Display win pop-up and link to the next level
+   
     function winGame() {
       alert("You Win!");
       const nextLevelLink = document.createElement("a");
-      nextLevelLink.href = "next_level.html"; // Replace with the actual URL of the next level
+      nextLevelLink.href = "public/Tommy-flappybird.html"; 
       nextLevelLink.textContent = "Next Level";
       document.body.appendChild(nextLevelLink);
     }
 
-    // Reset the game
+   
     function resetGame() {
       pacManX = 180;
       pacManY = 180;
@@ -98,7 +98,7 @@
       moveGhostRandomly();
     }
 
-    // Event listeners for WASD keys
+    
     document.addEventListener("keydown", (event) => {
       const key = event.key.toLowerCase();
 
@@ -120,10 +120,10 @@
       checkCollisions();
     });
 
-    // Initialize the game
-    moveGhostRandomly(); // Initial random position for the ghost
+   
+    moveGhostRandomly(); 
 
-    // Set a timer to move the ghost randomly every 2 seconds
+   
     setInterval(moveGhostRandomly, 2000);
   </script>
 </body>
