@@ -1,29 +1,34 @@
-<h2 align=center>Tommy classes</h2>
+
+<html>
+<head>
+    <title>Tommy classes</title>
+</head>
+<body>
+
+<h2 align="center">Tommy classes</h2>
+
 <script>
-
 class myPerson {
- constructor(passName, passAge) {
-    this.myName = passName;
-    this.myAge = passAge;
- }
+    constructor(passName, passAge) {
+        this.myName = passName;
+        this.myAge = passAge;
+    }
 
-  myShow(){
-      document.getElementById('myDiv01').innerHTML = 'hello '+
-        '. You are ' + this.myAge + ' years old <br>
-  }
+    myShow() {
+        document.getElementById('myDiv01').innerHTML = 'Hello ' + this.myName + '. You are ' + this.myAge + ' years old.<br>';
+    }
+}
 
-} // end class myAnimal
-
+function createMyPerson() {
+    myCharacter = new myPerson('mohid', 17);
+    myCharacter.myShow();
+}
 </script>
 
-<input type=button value="class Person" onClick="{
+<input type="button" value="Create Person" onClick="createMyPerson()">
 
-   myCharacter = new myPerson('mohid', 17)
-   myCharcter.myShow()
+<div id="myDiv01">...</div>
 
-  }">
+</body>
+</html>
 
-  <div id+"myDiv01">...</div>
-
-
-  
