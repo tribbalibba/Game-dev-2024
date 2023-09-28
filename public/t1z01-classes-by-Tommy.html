@@ -1,0 +1,29 @@
+<h2 align=center>Tommy classes</h2>
+<script>
+
+class myPerson {
+ constructor(passName, passAge) {
+    this.myName = passName;
+    this.myAge = passAge;
+ }
+
+  myShow(){
+      document.getElementById('myDiv01').innerHTML = 'hello '+
+        '. You are ' + this.myAge + ' years old <br>
+  }
+
+} // end class myAnimal
+
+</script>
+
+<input type=button value="class Person" onClick="{
+
+   myCharacter = new myPerson('mohid', 17)
+   myCharcter.myShow()
+
+  }">
+
+  <div id+"myDiv01">...</div>
+
+
+  
