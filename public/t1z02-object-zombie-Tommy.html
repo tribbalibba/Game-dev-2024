@@ -1,57 +1,73 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Zombie checker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zombie Checker</title>
   <style>
     body {
-      background-color: #5617e8;  color: white;
-      font-family: Arial, sans-serif; padding: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding: 20px;
     }
+
     h3 {
-      margin-top: 20px;
-      font-size: 36px;
+      font-size: 28px;
+      margin-top: 10px;
     }
 
     select {
-   padding: 10px;
-      font-size: 18px;  border: 2px solid #d45f2b;
-    border-radius: 8px;
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #333;
+      border-radius: 8px;
       margin-top: 20px;
     }
 
-   p {
-      font-size: 24px;
+    p {
+      font-size: 18px;
+      margin-top: 10px;
     }
 
     button {
-   font-size: 20px;     padding: 10px 20px;  margin-top: 20px;
-      background-color: #d45f2b;
-      color: #5617e8;    border: none;
-      border-radius: 8px;   cursor: pointer;
+      font-size: 18px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #45aaf2;
+      background-color: #555;
     }
 
     #result {
-      font-size: 24px;      margin-top: 20px;
+      font-size: 18px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-<h3>Zombie Check</h3>
+<h3>Zombie Checker</h3>
 
-<select id="mySelect01" size="1" onchange="checkZombieStatus()">
-  <option></option>
-  <option value="mohid">mohid</option>
+<select id="mySelect" onchange="checkZombieStatus()">
+  <option value="">Select a person</option>
+  <option value="mohid">Mohid</option>
   <option value="Tommy">Tommy</option>
 </select>
 
 <p id="result"></p>
 
-<button onclick="displayDateTime()">Click me to display Date and Time</button>
+<button onclick="displayDateTime()">Show Date and Time</button>
+
+<p id="datetime"></p>
 
 <script>
   const zombies = {
@@ -60,23 +76,23 @@
   };
 
   function checkZombieStatus() {
-    const selectedName = document.getElementById('mySelect01').value;
+    const selectedName = document.getElementById('mySelect').value;
     const resultDiv = document.getElementById('result');
 
-    if (zombies[selectedName]) {
+    if (selectedName && zombies[selectedName]) {
       resultDiv.innerHTML = selectedName + ' is a zombie';
-    } else {
+    } else if (selectedName) {
       resultDiv.innerHTML = selectedName + ' is NOT a zombie';
+    } else {
+      resultDiv.innerHTML = '';
     }
   }
 
   function displayDateTime() {
     const date = new Date();
-    document.getElementById('demo').innerHTML = 'Date and Time: ' + date;
+    document.getElementById('datetime').innerHTML = 'Date and Time: ' + date.toLocaleString();
   }
 </script>
-
-<p id="demo"></p>
 
 </body>
 </html>
