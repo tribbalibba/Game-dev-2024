@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Beautiful Map</title>
+    <title>My Interactive Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         /* Custom styling for the map container */
@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-    <h2>My Beautiful Map</h2>
+    <h2>My Interactive Map</h2>
     Using <a href="https://www.openstreetmap.org">www.openstreetmap.org</a> and the API of leafletjs <a href="https://leafletjs.com/reference.html">https://leafletjs.com/reference.html</a> <br> <br>
     <div id="map"></div>
 
@@ -44,7 +44,12 @@
         // Add a marker to the map with a customized popup
         const marker01 = L.marker([49.143, -122.33]).addTo(map).bindPopup('<div class="custom-popup">Marker 1: This is a sample location</div>');
 
-        // You can add more markers or customizations as needed
+        // Enable marker placement on click
+        map.on('click', function(event) {
+            const lat = event.latlng.lat;
+            const lng = event.latlng.lng;
+            const newMarker = L.marker([lat, lng]).addTo(map).bindPopup('<div class="custom-popup">New Marker: Latitude ' + lat + '<br>Longitude ' + lng + '</div>');
+        });
     </script>
 </body>
 </html>
