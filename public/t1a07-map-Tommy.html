@@ -1,12 +1,50 @@
-﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Beautiful Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* Custom styling for the map container */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+        /* Custom styling for the popup */
+        .custom-popup {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Beautiful Map</h2>
+    Using <a href="https://www.openstreetmap.org">www.openstreetmap.org</a> and the API of leafletjs <a href="https://leafletjs.com/reference.html">https://leafletjs.com/reference.html</a> <br> <br>
+    <div id="map"></div>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<h2>t1a07-map-fred.html</h2>
-Using <a href="https://www.openstreetmap.org">www.openstreetmap.org</a> and the
-API of leafletjs <a href="https://leafletjs.com/reference.html">https://leafletjs.com/reference.html</a> <br> <br> <div id="map" style="width:100%; height:400px;"></div>
-<script>
-=
-const map L.map('map').setView([49.143, -122.31], 13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
-const marker01 = L.marker ([49.143, -122.33]).addTo(map).bindPopup('Marker 1: This is a sample location."); </script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        const map = L.map('map').setView([49.143, -122.31], 13);
+
+        // Add a tile layer with OpenStreetMap data
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker to the map with a customized popup
+        const marker01 = L.marker([49.143, -122.33]).addTo(map).bindPopup('<div class="custom-popup">Marker 1: This is a sample location</div>');
+
+        // You can add more markers or customizations as needed
+    </script>
+</body>
+</html>
