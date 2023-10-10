@@ -30,6 +30,8 @@
     <h2>My Interactive Map</h2>
     Using <a href="https://www.openstreetmap.org">www.openstreetmap.org</a> and the API of leafletjs <a href="https://leafletjs.com/reference.html">https://leafletjs.com/reference.html</a> <br> <br>
     <div id="map"></div>
+    
+    <button id="getCoordinatesButton">Get Coordinates</button>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
@@ -41,14 +43,19 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Add a marker to the map with a customized popup
-        const marker01 = L.marker([49.143, -122.33]).addTo(map).bindPopup('<div class="custom-popup">Marker 1: This is a sample location</div>');
-
         // Enable marker placement on click
         map.on('click', function(event) {
             const lat = event.latlng.lat;
             const lng = event.latlng.lng;
-            const newMarker = L.marker([lat, lng]).addTo(map).bindPopup('<div class="custom-popup">New Marker: Latitude ' + lat + '<br>Longitude ' + lng + '</div>');
+            const coordinates = `Latitude: ${lat.toFixed(6)}, Longitude: ${lng.toFixed(6)}`;
+            
+            // Create a marker with the coordinates in the popup
+            const newMarker = L.marker([lat, lng]).addTo(map).bindPopup('<div class="custom-popup">' + coordinates + '</div>');
+        });
+
+        // Add event listener to the button to get coordinates
+        document.getElementById('getCoordinatesButton').addEventListener('click', function() {
+            alert('Click on the map to get coordinates.');
         });
     </script>
 </body>
