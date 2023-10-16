@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <h2>press the "+"</h2>
+    <input type="text" id="result" value="0" readonly>
+    <br>
+    <button onclick="addition()">+</button>
+    
+    <script>
+        function addition() {
+            // Get the current value from the result input field
+            var currentValue = parseFloat(document.getElementById("result").value);
+            
+            // Prompt the user to enter a number to add
+            var numberToAdd = parseFloat(prompt("Enter a number to add:"));
+            
+            if (!isNaN(numberToAdd)) {
+                // Perform the addition and update the result field
+                var sum = currentValue + numberToAdd;
+                document.getElementById("result").value = sum;
+            } else {
+                alert("Please enter a valid number.");
+            }
+        }
+    </script>
+</body>
+</html>
+
