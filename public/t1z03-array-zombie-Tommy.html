@@ -1,22 +1,32 @@
 <script>
-  let myThingName = ['jon', 'Dan','Tommy']
-    let myThingZombie = [true, false, true]
+  let myThingName = ['Jon', 'Dan', 'Tommy'];
+  let myThingZombie = [true, false, true];
 </script>
-is <select id=",ySelect01" sixe=1 onChange="{
-myinput = document.getElementById('myselect01').value
-for (myloop=0: myloop < 4; myloop++){
-     if (myThingName [myloop] == myinput){
-     if (myThingZombie [myloop]) {
-     document.getElementById('Div01').innerhtml = myInput + ' is a zombie'
-     } else { 
-     document.gtetElementById('myDiv01').innerhtml = myinput + ' is NOT a zombie'
-     }
-     }
-     }
-     }">
-  <option>
-  <option>Jon
-      <option>Dan
-          <option>Fred
-</select> a Zombie? Really!<br>
-<div id="MyDiv01">...</div><br>
+
+<label for="mySelect01">Select a name:</label>
+<select id="mySelect01" size="1" onchange="checkZombieStatus()">
+  <option value="Jon">Jon</option>
+  <option value="Dan">Dan</option>
+  <option value="Tommy">Tommy</option>
+</select>
+
+<div id="myDiv01">Result will be displayed here.</div>
+
+<script>
+  function checkZombieStatus() {
+    let myInput = document.getElementById('mySelect01').value;
+    let result = "Result will be displayed here.";
+
+    for (let myLoop = 0; myLoop < myThingName.length; myLoop++) {
+      if (myThingName[myLoop] === myInput) {
+        if (myThingZombie[myLoop]) {
+          result = myInput + ' is a zombie';
+        } else {
+          result = myInput + ' is NOT a zombie';
+        }
+      }
+    }
+
+    document.getElementById('myDiv01').innerHTML = result;
+  }
+</script>
