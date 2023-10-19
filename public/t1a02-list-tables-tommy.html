@@ -1,3 +1,71 @@
+<style>
+main {display: flex;}
+main > * {border: 1px solid;}
+table {border-collapse: collapse; font-family: helvetica}
+td, th {border:  1px solid;
+      padding: 10px;
+      min-width: 200px;
+      background: white;
+      box-sizing: border-box;
+      text-align: left;
+}
+.table-container {
+  position: relative;
+  max-height:  300px;
+  width: 500px;
+  overflow: scroll;
+}
+
+thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 3;
+}
+
+tfoot {
+  position: -webkit-sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+tfoot td:first-child {
+  z-index: 3;
+}
+
+tbody {
+  overflow: scroll;
+  height: 200px;
+}
+
+/* MAKE LEFT COLUMN FIXEZ */
+tr > :first-child {
+  position: -webkit-sticky;
+  position: sticky; 
+  background: hsl(180, 50%, 70%);
+  left: 0; 
+}
+/* don't do this */
+tr > :first-child {
+  box-shadow: inset 0px 1px black;
+}
+
+
+</style>
+
 
 <html>
 <head>
@@ -48,3 +116,78 @@
     </ul>
 </body>
 </html>
+
+<h4> my sleep schedule</h4>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th:nth-child(even),td:nth-child(even) {
+  background-color: #D6EEEE;
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+  <tr>
+    <th> </th>
+    <th>MON</th>
+    <th>TUE</th>
+    <th>WED</th>
+    <th>THU</th>
+    <th>FRI</th>
+    <th>SAT</th>
+    <th>SUN</th>
+  </tr>
+  <tr>
+  <td>sleep </td>
+    <td>11-7 </td>
+    <td>12-7</td>
+    <td>9-7</td>
+    <td>1-7</td>
+    <td>11-7</td>
+    <td>1130-7</td>
+    <td>12-7</td>
+  </tr>
+  <tr>
+  <td>what I did</td>
+    <td>school</td>
+    <td>school</td>
+    <td>school</td>
+    <td>school</td>
+    <td>school</td>
+    <td>Hung out with friends</td>
+    <td>cleaned my room and watched a movie</td>
+  </tr>
+  <tr>
+  <td>who I saw</td>
+    <td>Teachers, friends, and Mom</td>
+    <td>Teachers, friends, and Mom</td>
+    <td>Teachers, friends, and Mom</td>
+    <td>Teachers, friends, and Mom</td>
+    <td>Teachers, friends, and Mom</td>
+    <td>coworkers, friends, Boss, Mom</td>
+    <td>Coworkers, Boss, Mom </td>
+  </tr>
+  <tr>
+  <td>how i felt</td>
+    <td>good</td>
+    <td>tired</td>
+    <td>great</td>
+    <td>lazy</td>
+    <td>good</td>
+    <td>like i was having fun</td>
+    <td>tired and relaxed</td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+
