@@ -1,7 +1,73 @@
-
+<!DOCTYPE html>
 <html>
 <head>
     <title>Trivia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #myDiv01 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        #myDiv02 {
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 20px;
+        }
+
+        .answer {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -10,7 +76,7 @@
 </header>
 
 <nav>
-    <a href="https://dweebuh.github.io/gamedev2023mohid/public/index.html">Home</a>
+    <a href="https://tribbalibba.github.io/Game-dev-2024/public/index.html">Home</a>
 </nav>
 
 <main>
@@ -18,17 +84,41 @@
 
     <button onclick="myCall()">Get Trivia</button>
 
-    <div id="myDiv01">...</div>
+    <div id="myDiv01">Question: </div>
     <hr>
-    <div id="myDiv02">...</div>
+    <div id="myDiv02">Response: </div>
+
+    <div class="answer" id="correctAnswer">Correct Answer: </div>
+    <div class="answer" id="incorrectAnswer1">Incorrect Answer 1: </div>
+    <div class="answer" id="incorrectAnswer2">Incorrect Answer 2: </div>
+    <div class="answer" id="incorrectAnswer3">Incorrect Answer 3: </div>
 
     <script>
+        let correctAnswer;
+
         async function myCall() {
             const myData = await fetch('https://opentdb.com/api.php?amount=1&category=9&type=multiple');
             const myTemp = await myData.json();
             console.log(myTemp);
+            
             document.getElementById('myDiv01').innerHTML = 'Question: ' + myTemp.results[0].question;
-            document.getElementById('myDiv02').innerHTML = JSON.stringify(myTemp, null, 4);
+
+            correctAnswer = myTemp.results[0].correct_answer;
+            document.getElementById('correctAnswer').innerHTML = 'Correct Answer: ' + correctAnswer;
+
+            const incorrectAnswers = myTemp.results[0].incorrect_answers;
+            for (let i = 0; i < incorrectAnswers.length; i++) {
+                document.getElementById('incorrectAnswer' + (i + 1)).innerHTML = 'Incorrect Answer ' + (i + 1) + ': ' + incorrectAnswers[i];
+            }
+
+            showAnswers();
+        }
+
+        function showAnswers() {
+            const answerElements = document.querySelectorAll('.answer');
+            answerElements.forEach((element) => {
+                element.style.display = 'block';
+            });
         }
     </script>
 </main>
