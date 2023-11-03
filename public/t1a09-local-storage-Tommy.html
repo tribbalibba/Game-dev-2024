@@ -1,26 +1,52 @@
-<h2>local storage Tommy</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Storage To-Do List</title>
+</head>
+<body>
+    <h2>Local Storage To-Do List</h2>
 
-<body onload="{
-   myStorage = localStorage.getItem('myStoredText')
-   if(myStorage  != null){
-      document.getElementById('myText1').value = myStorage 
-    }
-}">
+    <body onload="loadToDos()"></body>
 
-<body onunload="{
-   localstorage.setItem('myStoredText',document.getElementById('myText1').value)
-}">   
+    <input id="myText1" type="text" size="70" value="" placeholder="Add a to-do item">
+    <button id="storeButton" onclick="addToDo()">Add To-Do</button>
+    <ul id="toDoList"></ul>
 
-Text example: <input id="myText1" type=text size=70 value="" placeholder="Write here to store"><br>
+    <input type="button" value="Retrieve Text" onClick="loadToDos()">
 
-<input type="button" value="Store Text" onClick="{
-   localStorage.setItem('myStoredText', document.getElementById('myText1').value)
-   alert(document.getElementById('myText1').value + ' \nHas been stored')
-   document.getElementById('myText1').value = ''
-}">
+    <script>
+        function loadToDos() {
+            const toDoList = JSON.parse(localStorage.getItem('toDoList')) || [];
+            const listElement = document.getElementById('toDoList');
+            listElement.innerHTML = '';
 
-<input type="button" value="Retrieve Text" onClick="{
-   document.getElementById('myText1').value = localStorage.getItem('myStoredText')
-}"> 
+            toDoList.forEach((item, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = item;
+                listItem.innerHTML += `<button onclick="removeToDo(${index})">Remove</button>`;
+                listElement.appendChild(listItem);
+            });
+        }
 
+        function addToDo() {
+            const toDoItem = document.getElementById('myText1').value;
+            if (toDoItem.trim() !== '') {
+                const toDoList = JSON.parse(localStorage.getItem('toDoList')) || [];
+                toDoList.push(toDoItem);
+                localStorage.setItem('toDoList', JSON.stringify(toDoList));
+                document.getElementById('myText1').value = '';
+                loadToDos();
+            }
+        }
 
+        function removeToDo(index) {
+            const toDoList = JSON.parse(localStorage.getItem('toDoList')) || [];
+            if (index >= 0 && index < toDoList.length) {
+                toDoList.splice(index, 1);
+                localStorage.setItem('toDoList', JSON.stringify(toDoList));
+                loadToDos();
+            }
+        }
+    </script>
+</body>
+</html>
