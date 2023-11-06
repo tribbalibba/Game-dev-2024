@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Code Examples</title>
+</head>
+<body>
+    <h1>Python Code Examples</h1>
+    
+    <h2>Example 1: Hello, World!</h2>
+    <pre>
+<code>
+print("Hello, World!")
+</code>
+    </pre>
+    <button onclick="outputText('button1', 'div01')">Click Me</button>
+    <div id="div01"></div>
+
+    <h2>Example 2: Calculate the Sum of Numbers</h2>
+    <pre>
+<code>
+# Define a list of numbers
+numbers = [1, 2, 3, 4, 5]
+
+# Calculate the sum of the numbers
+sum_of_numbers = sum(numbers)
+
+# Print the result
+print(f"The sum of the numbers is: {sum_of_numbers}")
+</code>
+    </pre>
+    <button onclick="outputText('button2', 'div02')">Click Me</button>
+    <div id="div02"></div>
+
+    <h2>Example 3: Simple Conditional Statement</h2>
+    <pre>
+<code>
+# Get the user's age as input
+age = int(input("Enter your age:"))
+
+# Check if the user is eligible to vote
+if age >= 18:
+    print("You are eligible to vote.")
+else:
+    print("You are not eligible to vote.")
+</code>
+    </pre>
+    <button onclick="outputText('button3', 'div03')">Click Me</button>
+    <div id="div03"></div>
+
+    <script>
+        function outputText(buttonId, divId) {
+            if (buttonId === 'button2') {
+                document.getElementById(divId).textContent = "Hello";
+            } else if (buttonId === 'button3') {
+                document.getElementById(divId).textContent = "lol";
+            } else {
+                document.getElementById(divId).textContent = "Write Here";
+            }
+        }
+    </script>
+</body>
+</html>
