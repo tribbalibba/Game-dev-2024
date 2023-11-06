@@ -50,9 +50,28 @@ else:
     <script>
         function outputText(buttonId, divId) {
             if (buttonId === 'button2') {
-                document.getElementById(divId).textContent = "Hello";
+                document.getElementById(divId).textContent = "#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+";
             } else if (buttonId === 'button3') {
-                document.getElementById(divId).textContent = "lol";
+                document.getElementById(divId).textContent = "#include <iostream>
+
+int main() {
+    int sum = 0;
+
+    for (int i = 1; i <= 5; ++i) {
+        sum += i;
+    }
+
+    std::cout << "The sum of 1, 2, 3, 4, and 5 is: " << sum << std::endl;
+
+    return 0;
+}
+";
             } else {
                 document.getElementById(divId).textContent = "Write Here";
             }
