@@ -47,6 +47,9 @@ else:
     <button onclick="outputText('button3', 'div03')">Click Me</button>
     <div id="div03"></div>
 
+    <button onclick="outputText('button4', 'div04')">Click Me</button>
+    <div id="div04"></div>
+
     <script>
         function outputText(buttonId, divId) {
             if (buttonId === 'button1') {
@@ -71,9 +74,24 @@ int main() {
     return 0;
 }`;
             } else if (buttonId === 'button3') {
-                document.getElementById(divId).textContent = "lol";
-            } else {
-                document.getElementById(divId).textContent = "Write Here";
+                document.getElementById(divId).textContent = `#include <iostream>
+
+int main() {
+    int age;
+
+    std::cout << "Please enter your age: ";
+    std::cin >> age;
+
+    if (age >= 18) {
+        std::cout << "You can vote!" << std::endl;
+    } else {
+        std::cout << "You cannot vote yet." << std::endl;
+    }
+
+    return 0;
+}`;
+            } else if (buttonId === 'button4') {
+                document.getElementById(divId).textContent = "this is just a random button";
             }
         }
     </script>
