@@ -1,8 +1,42 @@
-<h1 align=center>t2a06-spy-Tommy.html</h1>
 
-<textarea id="myArea01" rows=4 cols=70>Hello how are you</textarea><br>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         text-align: center;
+      }
 
-<input type=button value="encrypt" onclick="{
+      h1 {
+         margin-bottom: 20px;
+      }
+
+      textarea {
+         border-radius: 10px;
+         padding: 10px;
+         margin-bottom: 10px;
+         resize: none; /* Disable textarea resizing */
+      }
+
+      input[type=button] {
+         border: none;
+         padding: 10px 20px;
+         font-size: 16px;
+         cursor: pointer;
+         border-radius: 5px;
+      }
+   </style>
+</head>
+<body>
+
+<h1>t2a15-spy-Tommy.html</h1>
+<h2>Type "hello" in text area01 to make the Decrypt work
+
+<textarea id="myArea01" rows=4 cols=70 placeholder="Enter text..."></textarea><br>
+
+<input type="button" value="Encrypt" onclick="{
    let myTemp = '';
    const letterMapping = {'e': 'f', 'h': 'i', 'o': 'p', 'a': 'b'}; // Add more mappings as needed
    myString = document.getElementById('myArea01').value.toLowerCase().split('');
@@ -16,9 +50,9 @@
    document.getElementById('myArea02').value = myString.join('');
 }"><br><br>
 
-<textarea id="myArea02" rows=4 cols=70></textarea><br>
+<textarea id="myArea02" rows=4 cols=70 placeholder="Encrypted text..." readonly></textarea><br>
 
-<input type=button value="decrypt" onclick="{
+<input type="button" value="Decrypt" onclick="{
    let myTemp = '';
    const letterMapping = {'f': 'e', 'i': 'h', 'p': 'o', 'b': 'a'}; // Use the same mappings as in encryption
    myString = document.getElementById('myArea02').value.toLowerCase().split('');
@@ -42,4 +76,7 @@
    }
 }"><br><br>
 
-<textarea id="myArea03" rows=4 cols=70></textarea><br>
+<textarea id="myArea03" rows=4 cols=70 placeholder="Decrypted text..." readonly></textarea><br>
+
+</body>
+</html>
