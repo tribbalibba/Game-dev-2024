@@ -1,0 +1,45 @@
+<h1 align=center>t2a06-spy-Tommy.html</h1>
+
+<textarea id="myArea01" rows=4 cols=70>Hello how are you</textarea><br>
+
+<input type=button value="encrypt" onclick="{
+   let myTemp = '';
+   const letterMapping = {'e': 'f', 'h': 'i', 'o': 'p', 'a': 'b'}; // Add more mappings as needed
+   myString = document.getElementById('myArea01').value.toLowerCase().split('');
+   for (let myLoop=0; myLoop < myString.length; myLoop++){
+      myTemp = myString[myLoop];
+      if (letterMapping.hasOwnProperty(myString[myLoop])) {
+         myTemp = letterMapping[myString[myLoop]];
+      }
+      myString[myLoop] = myTemp;
+   }
+   document.getElementById('myArea02').value = myString.join('');
+}"><br><br>
+
+<textarea id="myArea02" rows=4 cols=70></textarea><br>
+
+<input type=button value="decrypt" onclick="{
+   let myTemp = '';
+   const letterMapping = {'f': 'e', 'i': 'h', 'p': 'o', 'b': 'a'}; // Use the same mappings as in encryption
+   myString = document.getElementById('myArea02').value.toLowerCase().split('');
+   let canDecrypt = true;
+   for (let myLoop=0; myLoop < myString.length; myLoop++){
+      myTemp = myString[myLoop];
+      if (letterMapping.hasOwnProperty(myString[myLoop])) {
+         myTemp = letterMapping[myString[myLoop]];
+      }
+      if (myTemp !== document.getElementById('myArea01').value.toLowerCase()[myLoop]) {
+         // Letter has been changed, can't decrypt
+         canDecrypt = false;
+         break;
+      }
+      myString[myLoop] = myTemp;
+   }
+   if (canDecrypt) {
+      document.getElementById('myArea03').value = myString.join('');
+   } else {
+      alert('Cannot decrypt: Letters have been changed!');
+   }
+}"><br><br>
+
+<textarea id="myArea03" rows=4 cols=70></textarea><br>
