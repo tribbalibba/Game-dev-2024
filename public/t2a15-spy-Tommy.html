@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8">
@@ -32,7 +32,7 @@
 <body>
 
 <h1>t2a15-spy-Tommy.html</h1>
-<h2>Type "hello" in text area01 to make the Decrypt work
+<h2>Type "hello" in text area01 to make the Decrypt work</h2>
 
 <textarea id="myArea01" rows=4 cols=70 placeholder="Enter text..."></textarea><br>
 
@@ -77,6 +77,22 @@
 }"><br><br>
 
 <textarea id="myArea03" rows=4 cols=70 placeholder="Decrypted text..." readonly></textarea><br>
+
+<input type="button" value="SHA-256" onclick="calculateSHA256()"><br><br>
+
+<textarea id="shaResult" rows=4 cols=70 placeholder="SHA-256 Hash..." readonly></textarea><br>
+
+<script>
+   async function calculateSHA256() {
+      const inputString = document.getElementById('myArea01').value; // Use the text from myArea01
+      const encoder = new TextEncoder();
+      const data = encoder.encode(inputString);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+      document.getElementById('shaResult').value = `Input: ${inputString}\nSHA-256 Hash: ${hashHex}`;
+   }
+</script>
 
 </body>
 </html>
