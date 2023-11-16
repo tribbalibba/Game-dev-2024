@@ -39,6 +39,41 @@
         moveBackground(direction);
       }, 100);
     }
+
+    function moveImage(key) {
+      let image = document.getElementById('myImage01');
+      let left = parseInt(image.style.left) || 0;
+      let top = parseInt(image.style.top) || 0;
+
+      switch (key) {
+        case 'w':
+          top -= moveAmount;
+          break;
+        case 'a':
+          left -= moveAmount;
+          break;
+        case 's':
+          top += moveAmount;
+          break;
+        case 'd':
+          left += moveAmount;
+          break;
+      }
+
+      image.style.left = left + 'px';
+      image.style.top = top + 'px';
+    }
+
+    document.addEventListener('keydown', function (event) {
+      let key = event.key.toLowerCase();
+      if (['w', 'a', 's', 'd'].includes(key)) {
+        moveImage(key);
+      }
+    });
+
+    document.addEventListener('keyup', function () {
+      clearInterval(myClock);
+    });
   </script>
 </head>
 
