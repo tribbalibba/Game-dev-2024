@@ -1,44 +1,63 @@
-<body id="myBody" style="background-repeat:repeat; background-size: 80%" background="myBackground01.jpg">
+<!DOCTYPE html>
+<html>
 
-<script>
-   let myGlobalX = 0
-   let myClock
-</script>
-
-<input id="myButton01" type=button value="background move left" onclick="{
-  myTemp = '100px 0px'
-  myGlobalX -= 5
-  myTemp =  myGlobalX + 'px 0px'
-  document.getElementById('myBody').style.backgroundPosition =myTemp
-
-}">
-
-<input type=button value="Auto Background Left" onclick="{
-  clearInterval(myClock)
-  myClock = setInterval(function(){
-     document.getElementById('myButton01').click() 
-  }, 100)
-    
-}">
-
-<input type=button value="Image Right" onclick="{
-  document.getElementById('myImage01').style.left = parseInt(document.getElementById('myImage01').style.left) + 10 + 'px'
-}"><br><br>
-
-<img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="https://149455152.v2.pressablecdn.com/wp-content/uploads/2019/08/feth-featured.jpg">
-
-   <html>
 <head>
-<style>
-body  {
-  background-image: url("https://www.thespruce.com/thmb/ARG9YVZh8cZxTgXhzqrfRhOHlEA=/1178x0/filters:no_upscale():max_bytes(150000):strip_icc()/YDrq5F-5b10345bfa6bcc0036abe9bd.jpg");
- 
-}
-</style>
+  <style>
+    body {
+      background-repeat: repeat;
+      background-size: 80%;
+    }
+  </style>
+  <script>
+    let myGlobalX = 0;
+    let myGlobalY = 0;
+    let moveAmount = 5; // Adjust the move amount as needed
+    let myClock;
+
+    function moveBackground(direction) {
+      let myTemp;
+      if (direction === 'left') {
+        myGlobalX -= moveAmount;
+        myTemp = myGlobalX + 'px ' + myGlobalY + 'px';
+      } else if (direction === 'right') {
+        myGlobalX += moveAmount;
+        myTemp = myGlobalX + 'px ' + myGlobalY + 'px';
+      } else if (direction === 'up') {
+        myGlobalY -= moveAmount;
+        myTemp = myGlobalX + 'px ' + myGlobalY + 'px';
+      } else if (direction === 'down') {
+        myGlobalY += moveAmount;
+        myTemp = myGlobalX + 'px ' + myGlobalY + 'px';
+      }
+
+      document.getElementById('myBody').style.backgroundPosition = myTemp;
+    }
+
+    function autoMoveBackground(direction) {
+      clearInterval(myClock);
+      myClock = setInterval(function () {
+        moveBackground(direction);
+      }, 100);
+    }
+  </script>
 </head>
-<body>
 
+<body id="myBody" style="background-repeat: repeat; background-size: 80%" background="myBackground01.jpg">
 
+  <input type=button value="Move Left" onclick="moveBackground('left')">
+  <input type=button value="Move Right" onclick="moveBackground('right')">
+  <input type=button value="Move Up" onclick="moveBackground('up')">
+  <input type=button value="Move Down" onclick="moveBackground('down')">
+  <br><br>
+
+  <input type=button value="Auto Move Left" onclick="autoMoveBackground('left')">
+  <input type=button value="Auto Move Right" onclick="autoMoveBackground('right')">
+  <input type=button value="Auto Move Up" onclick="autoMoveBackground('up')">
+  <input type=button value="Auto Move Down" onclick="autoMoveBackground('down')">
+  <br><br>
+
+  <img id="myImage01" style="position:relative; width:100px; height:80px; top:0px; left:0px;" src="https://149455152.v2.pressablecdn.com/wp-content/uploads/2019/08/feth-featured.jpg">
 
 </body>
+
 </html>
