@@ -1,6 +1,6 @@
 <body id="myBody" style="background-repeat:repeat; background-size: 80%" background="myBackground01.jpg">
 
-<h1 align=center><font color=red>t2a16 moving background Tommy</font></h1>
+<h1 align=center><font color=red>t2a16 maze Tommy</font></h1>
 
 <script>
 
@@ -28,26 +28,26 @@
    }
 
    function myCheckHit() {
-       if (myHitOther('myimg01', 'myimg02')) {
-           document.getElementById('myimg01').style.left = '20px';
+       if (myHitOther('cat', 'myimg02')) {
+           document.getElementById('cat').style.left = '20px';
        }
 
-       if (myHitOther('myimg01', 'myimg03')) {
-           document.getElementById('myimg01').style.left = '20px';
+       if (myHitOther('cat', 'myimg03')) {
+           document.getElementById('cat').style.left = '20px';
        }
 
        // YOU WIN and go to the next level!
-       if (myHitOther('myimg01', 'myimg04')) {
+       if (myHitOther('cat', 'myimg04')) {
            alert('You Win, now go to the next level');
-           document.getElementById('myimg01').style.left = '20px';
+           document.getElementById('cat').style.left = '20px';
            location = 'https://www.google.ca';
        }
 
        // more if statements here
 
        // checking for window boundaries
-       if (parseInt(document.getElementById('myimg01').style.left) > window.innerWidth - document.getElementById('myimg01').width) {
-           document.getElementById('myimg01').style.left = '10px';
+       if (parseInt(document.getElementById('cat').style.left) > window.innerWidth - document.getElementById('cat').width) {
+           document.getElementById('cat').style.left = '10px';
        }
    }
 
@@ -66,12 +66,12 @@
 
 
 <input type=button value="Right" onTouchStart="{this.click(); event.preventDefault();}" onclick="{
-  document.getElementById('myimg01').style.left = parseInt(document.getElementById('myimg01').style.left) + 10 + 'px'
+  document.getElementById('cat').style.left = parseInt(document.getElementById('cat').style.left) + 10 + 'px'
   myCheckHit()     // checks for all collisions
 }">
 
 <input type=button value="Down" onTouchStart="{this.click(); event.preventDefault();}" onclick="{
-  document.getElementById('myimg01').style.top = parseInt(document.getElementById('myimg01').style.top) + 10 + 'px'
+  document.getElementById('cat').style.top = parseInt(document.getElementById('cat').style.top) + 10 + 'px'
   myCheckHit()     // checks for all collisions
 }">
 
@@ -79,13 +79,13 @@
 
   clearInterval(myTimer01)
   myTimer01 = setInterval(function(){
-     document.getElementById('myimg01').style.left = parseInt(document.getElementById('myimg01').style.left) + 10 + 'px'
+     document.getElementById('cat').style.left = parseInt(document.getElementById('cat').style.left) + 10 + 'px'
      myCheckHit()     // checks for all collisions
   }, 50)
 
 }"><br><br>
 
-<img id="myimg01" src="myImgNew.jpg" title="myimg01" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;">
+<img id="cat" src="myImgNew.jpg" title="cat" style="position:absolute; width:100px; height:80px; left: 50px; top:190px;">
 <img id="myimg02" src="myImgNew.jpg" title="myimg02" style="position:absolute; width:10px;  height:80px; left:350px; top:190px;">
 <img id="myimg03" src="myImgNew.jpg" title="myimg03" style="position:absolute; width:100px; height:8px;  left:500px; top:190px;">
 <img id="myimg04" src="myImgNew.jpg" title="myimg04" style="position:absolute; width:100px; height:80px; left:500px; top:400px;">
