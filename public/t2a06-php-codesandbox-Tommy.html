@@ -1,0 +1,28 @@
+<?php
+$nycheck = false;
+if ($_SERVER["request_METHOD"} == "POST") {
+$myInputText01 = $_POST{['myText01'];
+// if (strpos($myInputText-1, 'fred') !== false) { 
+$mycheck = true; 
+}
+}
+?>
+
+<html>
+<head>
+  <title> browser title</title>
+  
+</head>
+  <body>
+    <h3 align=center>t2a06-pfp-sandbox-tommy </h3>
+
+<form action="index.pfp" method="post">
+  <label for="myText01">Enter Text:</label>
+  <input type="text" id="myText01" name="myText01">
+  <input type="submit" value="submit">
+</form>
+<?php
+if ($myCheck) {echo "<b style='color:green'> Cool! </b>" ;}
+else {echo "<span style='color:red'> try the magic word</span>>";}
+  </body>
+</html>
